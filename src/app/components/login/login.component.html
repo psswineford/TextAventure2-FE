@@ -1,0 +1,23 @@
+<mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Enter Your Info</mat-card-title>
+    </mat-card-header>
+     <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="username" (keydown.enter)="userservice.tryLogin(username, password)">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="password" (keydown.enter)="userservice.tryLogin(username, password)">
+        </mat-form-field>
+        <br>
+    </mat-card-content>
+    <mat-card-actions>
+        <button  mat-raised-button color="primary" class="login-inout button cardButtons"  (click)="userservice.tryLogin(username, password)">Login</button>
+        <!-- <button  mat-raised-button color="primary" class="login-inout button cardButtons" (click)="uiservice.setAddUserPage()">Register</button> -->
+    </mat-card-actions>
+  </mat-card>
+
+ 

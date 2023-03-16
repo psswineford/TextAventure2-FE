@@ -1,0 +1,16 @@
+body, p, h3 {
+    margin-left: 1rem;
+    font-family: Comic Sans MS;
+}
+
+
+.character-card {
+
+    max-width: 225px;
+    font-family: Comic Sans MS;
+    margin-left: 1rem;
+    display: inline-flex;
+    margin-top: 1rem;
+    background:linear-gradient(to bottom, #88ece4  5%, #72997f 100%)
+  }
+  

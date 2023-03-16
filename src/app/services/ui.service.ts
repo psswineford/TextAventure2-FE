@@ -9,6 +9,7 @@ export class UiService {
   private showLoginPage: boolean = true
   private showCharacterPage: boolean = false
   public username: string = ''
+  public userID: number = 0
   constructor(private snackBar: MatSnackBar) { }
 
   //return state info 
@@ -26,6 +27,7 @@ export class UiService {
     this.showLoginPage = false
     this.showCharacterPage = true
     this.username = user.username
+    this.userID = user.id
   }
 
 

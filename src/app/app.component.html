@@ -1,2 +1,4 @@
 <app-login *ngIf="uiservice.getShowLoginStatus()"></app-login>
+<app-register *ngIf="uiservice.getShowRegisterPageStatus()"></app-register>
 <app-character *ngIf="uiservice.getShowCharacterPageStatus()"></app-character>
+<app-add-character *ngIf="uiservice.getShowAddCharacterPageStatus()" ></app-add-character>

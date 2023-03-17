@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs';
 import { Character } from '../Data/Character';
 import { UiService } from './ui.service';
 
@@ -19,8 +18,8 @@ export class CharacterService {
   }
 
   public getCharacters(id: number) {
-    this.http.get<Character[]>( this.BASEURL + `/CharacterContoller/id?id=${id}`)
-      .pipe(take(1))
+    this.http.get<Character[]>( this.BASEURL + `/Character/id?id=${id}`)
+   
       .subscribe({
         next: data => {
           this.characters = data
@@ -31,4 +30,24 @@ export class CharacterService {
         }
       })
   }
+
+  public createCharacter(type: string, name: string, armorClass: number, hitPoints: number) {
+    this.http.post(`http://localhost:5237/api/Character/add`, {
+      type,
+      name,
+      armorClass,
+      hitPoints,
+      currentRoom: 0,
+      userId: this.service.userID
+    }).subscribe({
+        next: c => {
+          this.service.setShowCharacterPage()
+        },
+        error: err => {
+          this.service.showError(err + 'unable to create your character')
+        }
+      })
+  }
 }
+
+

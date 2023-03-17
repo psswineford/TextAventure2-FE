@@ -12,12 +12,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import { AddCharacterComponent } from './components/add-character/add-character.component';
+import { MatInputModule } from '@angular/material/input';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CharacterComponent
+    CharacterComponent,
+    AddCharacterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { MatFormFieldModule} from '@angular/material/form-field';
     MatSnackBarModule,
     MatCardModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
 
   ],
   providers: [],

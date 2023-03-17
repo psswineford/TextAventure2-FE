@@ -22,4 +22,19 @@ export class UserService {
       }
     })
   }
+
+  public registerUser(username: string, password: string): void {
+    this.http.post<User>( this.BASEURL + `/User`, {
+      username,
+      password
+    }).subscribe({
+        next: user => {
+          this.service.showError('Succesfully Added, Please Login')
+          this.service.setLoginPage()
+        },
+        error: err => {
+          this.service.showError(err + 'Unable to register user')
+        }
+      })
+  }
 }

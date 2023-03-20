@@ -10,6 +10,7 @@ export class UiService {
   private showCharacterPage: boolean = false
   private showAddCharacterPage: boolean = false
   private showRegisterPage: boolean = false
+  private showCurrentRoom: boolean = false
   public username: string = ''
   public userID: number = 0
   constructor(private snackBar: MatSnackBar) { }
@@ -30,6 +31,12 @@ export class UiService {
   public getShowRegisterPageStatus(): boolean {
     return this.showRegisterPage
   }
+
+  public getShowCurrentRoomStatus(): boolean {
+    return this.showCurrentRoom
+  }
+
+
   //update state
 
   public setLoginPage(): void {
@@ -37,6 +44,7 @@ export class UiService {
     this.showRegisterPage = false
     this.showCharacterPage = false
     this.showAddCharacterPage = false
+    this.showCurrentRoom = false
   }
 
   public setRegisterPage(): void {
@@ -44,12 +52,14 @@ export class UiService {
     this.showRegisterPage = true
     this.showCharacterPage = false
     this.showAddCharacterPage = false
+    this.showCurrentRoom = false
   }
 
   public loginSuccess(user: User): void {
     this.showLoginPage = false
     this.showCharacterPage = true
     this.showRegisterPage = false
+    this.showCurrentRoom = false
     this.username = user.username
     this.userID = user.id
   }
@@ -59,6 +69,7 @@ export class UiService {
     this.showRegisterPage = false
     this.showCharacterPage = false
     this.showAddCharacterPage = true
+    this.showCurrentRoom = false
   }
 
   public setShowCharacterPage(): void {
@@ -66,6 +77,15 @@ export class UiService {
     this.showRegisterPage = false
     this.showCharacterPage = true
     this.showAddCharacterPage = false
+    this.showCurrentRoom = false
+  }
+
+  public setCurrentRoomPage(): void {
+    this.showLoginPage = false
+    this.showRegisterPage = false
+    this.showCharacterPage = false
+    this.showAddCharacterPage = false
+    this.showCurrentRoom = true
   }
 
 

@@ -1,0 +1,42 @@
+body, p, h3 {
+    margin-left: 1rem;
+    font-family: Comic Sans MS;
+}
+
+
+.room-card {
+
+    max-width: 400px;
+    font-family: Comic Sans MS;
+    margin-left: 1rem;
+    display: inline-flex;
+    margin-top: 1rem;
+    background:linear-gradient(to bottom, #88ece4  5%, #72997f 100%)
+  }
+  
+
+  .cardButtons {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+    background-color:#599bb3;
+    border-radius:8px;
+    display:inline-block;
+  
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:16px;
+    padding:5px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3d768a;
+    margin-left: 1rem;
+  }
+  
+  .cardButtons:hover {
+    background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+    background-color:#408c99;
+  }
+  .cardButtons:active {
+    position:relative;
+    top:1px;
+  }

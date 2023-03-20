@@ -17,5 +17,8 @@
       <li>Hit Points: {{character.hitPoints}}</li>
     </ul>
   </mat-card-content>
+  <mat-card-actions>
+    <button class="cardButtons" (click)="roomService.updateCurrentRoom(roomNumber)">Select Character</button>
+</mat-card-actions>
 </mat-card>
 

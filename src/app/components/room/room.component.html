@@ -1,0 +1,21 @@
+<h3>Rooms!</h3>
+
+
+<mat-card class="room-card" *ngFor="let room of roomService.returnCurrentRoom()">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{room.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  <p>{{room.description}}</p>
+  
+    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option1Num)">{{room.option1Text}}</button>
+    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option2Num)">{{room.option2Text}}</button>
+    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option3Num)">{{room.option3Text}}</button>
+  
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <button class="cardButtons" (click)="roomService.updateCurrentRoom(roomNumber)">Select Character</button> -->
+</mat-card-actions>
+</mat-card>
+

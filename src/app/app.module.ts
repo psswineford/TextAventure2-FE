@@ -15,6 +15,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { AddCharacterComponent } from './components/add-character/add-character.component';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './components/register/register.component';
     LoginComponent,
     CharacterComponent,
     AddCharacterComponent,
-    RegisterComponent
+    RegisterComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,

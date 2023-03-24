@@ -1,5 +1,24 @@
 <h3>Rooms!</h3>
 
+<mat-card class="character-card" *ngFor="let character of characterService.returnSelectedCharacter()">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{character.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image
+    src="https://www.shutterstock.com/shutterstock/photos/1729774417/display_1500/stock-photo-pasta-rice-oatmeal-oil-potatoes-and-canned-food-in-paper-bag-on-wooden-background-top-view-1729774417.jpg"
+    alt="Pantry Item">
+  <mat-card-content>
+    <ul>
+      <li>Type: {{character.type}}</li>
+      <li>Armor Class: {{character.armorClass}}</li>
+      <li>Hit Points: {{character.hitPoints}}</li>
+      <li *ngIf="character.hasJewel == true">Jewel</li>
+      <li *ngIf="character.hasRing == true">Ring</li>
+      <li *ngIf="character.hasSword == true">Sword</li>
+    </ul>
+  </mat-card-content>
+</mat-card>
 
 <mat-card class="room-card" *ngFor="let room of roomService.returnCurrentRoom()">
   <mat-card-header>
@@ -9,9 +28,9 @@
   <mat-card-content>
   <p>{{room.description}}</p>
   
-    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option1Num)">{{room.option1Text}}</button>
-    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option2Num)">{{room.option2Text}}</button>
-    <button class="cardButtons" (click)="roomService.updateCurrentRoom(room.option3Num)">{{room.option3Text}}</button>
+    <button class="cardButtons" (click)="checkSelectedOption(room.option1Num)">{{room.option1Text}}</button>
+    <button class="cardButtons" (click)="checkSelectedOption(room.option2Num)">{{room.option2Text}}</button>
+    <button class="cardButtons" (click)="checkSelectedOption(room.option3Num)">{{room.option3Text}}</button>
   
   </mat-card-content>
   <mat-card-actions>
@@ -19,3 +38,6 @@
 </mat-card-actions>
 </mat-card>
 
+
+
+<!-- roomService.updateCurrentRoom(room.option3Num) -->

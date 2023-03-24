@@ -20,4 +20,9 @@ export class CharacterComponent {
     characterService.getCharacters(uiservice.userID)
   }
 
+  startTheGame(roomNumber: number, characterId: number): void {
+    this.characterService.getSelectedCharacter(characterId)
+    this.roomService.updateCurrentRoom(roomNumber)
+  }
+
 }

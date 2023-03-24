@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Character } from '../Data/Character';
+import { RoomService } from './room.service';
 import { UiService } from './ui.service';
 
 @Injectable({
@@ -9,16 +10,22 @@ import { UiService } from './ui.service';
 export class CharacterService {
 
   private characters: Character[]  = []
+  private selectedCharacter: Character[] = []
+
   private BASEURL: string = 'https://localhost:7263/api'
-  constructor(private http: HttpClient, private service: UiService) { }
+  constructor(private http: HttpClient, private service: UiService, private roomService: RoomService) { }
 
 
   public returnCharacters(): Character[] {
     return this.characters
   }
 
-  public getCharacters(id: number) {
-    this.http.get<Character[]>( this.BASEURL + `/Character/id?id=${id}`)
+  public returnSelectedCharacter(): Character[] {
+    return this.selectedCharacter
+  }
+
+  public getCharacters(userId: number) {
+    this.http.get<Character[]>( this.BASEURL + `/Character/userId?userId=${userId}`)
    
       .subscribe({
         next: data => {
@@ -29,6 +36,19 @@ export class CharacterService {
           this.service.showError( err + 'Unable to retrieve characters')
         }
       })
+  }
+
+  public getSelectedCharacter(id: number) {
+    this.http.get<Character[]>(this.BASEURL + `/Character/id?id=${id}`)
+    .subscribe({
+      next: data => {
+        this.selectedCharacter = data
+        this.returnSelectedCharacter()
+      },
+      error: err => {
+        this.service.showError( err + 'Unable to retrieve characters')
+      }
+    })
   }
 
   public createCharacter(type: string, name: string, armorClass: number, hitPoints: number) {
@@ -48,6 +68,30 @@ export class CharacterService {
         }
       })
   }
+
+  public updateCharacter(id: number, type:string, name: string, armorClass: number, hitPoints: number, hasJewel: boolean, hasRing: boolean, hasSword: boolean){
+    this.http.put(this.BASEURL + `/Character`, {
+      id,
+      type,
+      name,
+      armorClass,
+      hitPoints,
+      hasJewel,
+      hasRing,
+      hasSword,
+      userId: this.service.userID
+    })
+    .subscribe({
+      next: c => {
+        this.getCharacters(this.service.userID)
+      },
+      error: err => {
+        this.service.showError(err + "unable to update the character")
+      }
+    })
+  }
+
 }
 
 
+      

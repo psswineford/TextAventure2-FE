@@ -6,6 +6,10 @@ export class Character {
        public name : string,
        public armorClass: number,
        public hitPoints: number,
+       public hasJewel: boolean,
+       public hasRing: boolean,
+       public hasSword: boolean,
+       public currentRoom: number,
     ){}
 }
 

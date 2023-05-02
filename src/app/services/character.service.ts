@@ -10,8 +10,17 @@ import { UiService } from './ui.service';
 export class CharacterService {
 
   private characters: Character[]  = []
-  private selectedCharacter: Character[] = []
-
+  private selectedCharacter: Character = {
+    id: 0,
+    type: '',
+    name: '',
+    armorClass: 10,
+    hitPoints: 20,
+    currentRoom: 0,
+    hasRing: true,
+    hasJewel: true,
+    hasSword: true,
+  }
   private BASEURL: string = 'https://localhost:7263/api'
   constructor(private http: HttpClient, private service: UiService, private roomService: RoomService) { }
 
@@ -20,13 +29,13 @@ export class CharacterService {
     return this.characters
   }
 
-  public returnSelectedCharacter(): Character[] {
+  public returnSelectedCharacter(): Character {
     return this.selectedCharacter
   }
 
   public getCharacters(userId: number) {
     this.http.get<Character[]>( this.BASEURL + `/Character/userId?userId=${userId}`)
-   
+
       .subscribe({
         next: data => {
           this.characters = data
@@ -39,7 +48,7 @@ export class CharacterService {
   }
 
   public getSelectedCharacter(id: number) {
-    this.http.get<Character[]>(this.BASEURL + `/Character/id?id=${id}`)
+    this.http.get<Character>(this.BASEURL + `/Character/id?id=${id}`)
     .subscribe({
       next: data => {
         this.selectedCharacter = data
@@ -94,4 +103,3 @@ export class CharacterService {
 }
 
 
-      

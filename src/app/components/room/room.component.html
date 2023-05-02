@@ -1,37 +1,37 @@
 <h3>Rooms!</h3>
 
-<mat-card class="character-card" *ngFor="let character of characterService.returnSelectedCharacter()">
+<mat-card class="character-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{character.name}}</mat-card-title>
+    <mat-card-title>{{this.currentCharacter.name}}</mat-card-title>
   </mat-card-header>
   <img mat-card-image
     src="https://www.shutterstock.com/shutterstock/photos/1729774417/display_1500/stock-photo-pasta-rice-oatmeal-oil-potatoes-and-canned-food-in-paper-bag-on-wooden-background-top-view-1729774417.jpg"
     alt="Pantry Item">
   <mat-card-content>
     <ul>
-      <li>Type: {{character.type}}</li>
-      <li>Armor Class: {{character.armorClass}}</li>
-      <li>Hit Points: {{character.hitPoints}}</li>
-      <li *ngIf="character.hasJewel == true">Jewel</li>
-      <li *ngIf="character.hasRing == true">Ring</li>
-      <li *ngIf="character.hasSword == true">Sword</li>
+      <li>Type: {{this.currentCharacter.type}}</li>
+      <li>Armor Class: {{this.currentCharacter.armorClass}}</li>
+      <li>Hit Points: {{this.currentCharacter.hitPoints}}</li>
+      <li *ngIf="this.currentCharacter.hasJewel == true">Jewel</li>
+      <li *ngIf="this.currentCharacter.hasRing == true">Ring</li>
+      <li *ngIf="this.currentCharacter.hasSword == true">Sword</li>
     </ul>
   </mat-card-content>
 </mat-card>
 
-<mat-card class="room-card" *ngFor="let room of roomService.returnCurrentRoom()">
+<mat-card class="room-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{room.name}}</mat-card-title>
+    <mat-card-title>{{this.currentRoom.name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-  <p>{{room.description}}</p>
-  
-    <button class="cardButtons" (click)="checkSelectedOption(room.option1Num)">{{room.option1Text}}</button>
-    <button class="cardButtons" (click)="checkSelectedOption(room.option2Num)">{{room.option2Text}}</button>
-    <button class="cardButtons" (click)="checkSelectedOption(room.option3Num)">{{room.option3Text}}</button>
-  
+  <p>{{this.currentRoom.description}}</p>
+
+    <button class="cardButtons" (click)="checkSelectedOption(this.currentRoom.option1Num)">{{this.currentRoom.option1Text}}</button>
+    <button class="cardButtons" (click)="checkSelectedOption(this.currentRoom.option2Num)">{{this.currentRoom.option2Text}}</button>
+    <button class="cardButtons" (click)="checkSelectedOption(this.currentRoom.option3Num)">{{this.currentRoom.option3Text}}</button>
+
   </mat-card-content>
   <mat-card-actions>
     <!-- <button class="cardButtons" (click)="roomService.updateCurrentRoom(roomNumber)">Select Character</button> -->

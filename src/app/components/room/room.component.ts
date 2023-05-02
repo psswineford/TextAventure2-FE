@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/Data/Character';
+import { Room } from 'src/app/Data/Room';
 import { CharacterService } from 'src/app/services/character.service';
 import { RoomService } from 'src/app/services/room.service';
 import { UiService } from 'src/app/services/ui.service';
@@ -11,80 +12,64 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class RoomComponent implements OnInit {
 
-  public name: string = ''
-  public description : string = ''
-  public roomNumber: number = 1
-  public option1Text: string = ''
-  public option2Text: string = ''
-  public option3Text: string = ''
-  public option1Num: number = 0
-  public option2Num: number = 0 
-  public option3Num: number = 0
+  currentRoom: Room = {
+    id: 0,
+    name: '',
+    description: '',
+    roomNumber: 1,
+    option1Text: '',
+    option2Text: '',
+    option3Text: '',
+    option1Num: 0,
+    option2Num: 0,
+    option3Num: 0,
+  }
 
-  public id: number = 0
-  public type: string = ''
-  public charName : string = ''
-  public armorClass: number = 10
-  public hitPoints: number = 20
-  public hasJewel: boolean = false
-  public hasRing: boolean = false
-  public hasSword: boolean = false
-  public currentRoom: number= 0
+  currentCharacter: Character = {
+    id: 0,
+    type: '',
+    name: '',
+    armorClass: 10,
+    hitPoints: 20,
+    currentRoom: 0,
+    hasRing: false,
+    hasJewel: false,
+    hasSword: false,
+  }
 
-  currentCharacter: Character[] =  []
-
-  constructor(public uiservice: UiService, public roomService: RoomService, public characterService: CharacterService)
-  {
+  constructor(public uiservice: UiService, public roomService: RoomService, public characterService: CharacterService) {
   }
 
   ngOnInit(): void {
     this.currentCharacter = this.characterService.returnSelectedCharacter()
-    this.updateCharacterValues()
-
+    this.currentRoom = this.roomService.returnCurrentRoom();
   }
 
-
-
-  updateCharacterValues(): void {
-    for(var item of this.currentCharacter)
-    {
-      this.id = item.id
-      this.type = item.type
-      this.charName = item.name
-      this.armorClass = item.armorClass
-      this.hitPoints = item.hitPoints
-      this.hasJewel = item.hasJewel
-      this.hasRing = item.hasRing
-      this.hasSword = item.hasSword
-      this.currentRoom = item.currentRoom
-    }
-  }
 
   checkSelectedOption(optionNumber: number): void {
-      
-       if(optionNumber == 5 )
-       {
-        this.uiservice.showError('you got the Ring!')
-        this.hasRing = true
-        this.characterService.updateCharacter(this.id, this.type, this.charName, this.armorClass, this.hitPoints, this.hasJewel, true, this.hasSword)
-       }
 
-       if(optionNumber == 9 )
-       {
-        console.log(this.id)
-        this.uiservice.showError('you got the Jewel!')
-        this.hasJewel = true
-        this.characterService.updateCharacter(this.id, this.type, this.charName, this.armorClass, this.hitPoints, true, this.hasRing, this.hasSword)
-       }
-       if(optionNumber == 12 )
-       {
-        this.uiservice.showError('you got the Sword!')
-        this.hasSword = true
-        this.characterService.updateCharacter(this.id, this.type, this.charName, this.armorClass, this.hitPoints, this.hasJewel, this.hasRing, true)
-       }
-       
-       
-       this.roomService.updateCurrentRoom(optionNumber);
+    if (optionNumber == 5) {
+      this.uiservice.showError('you got the Ring!')
+      this.currentCharacter.hasRing = true
+      this.characterService.updateCharacter(this.currentCharacter.id, this.currentCharacter.type, this.currentCharacter.name, this.currentCharacter.armorClass, this.currentCharacter.hitPoints, this.currentCharacter.hasJewel, true, this.currentCharacter.hasSword)
+    }
+
+    if (optionNumber == 9) {
+      console.log(this.currentCharacter.id)
+      this.uiservice.showError('you got the Jewel!')
+      this.currentCharacter.hasJewel = true
+      this.characterService.updateCharacter(this.currentCharacter.id, this.currentCharacter.type, this.currentCharacter.name, this.currentCharacter.armorClass, this.currentCharacter.hitPoints, true, this.currentCharacter.hasRing, this.currentCharacter.hasSword)
+    }
+    if (optionNumber == 12) {
+      this.uiservice.showError('you got the Sword!')
+      this.currentCharacter.hasSword = true
+      this.characterService.updateCharacter(this.currentCharacter.id, this.currentCharacter.type, this.currentCharacter.name, this.currentCharacter.armorClass, this.currentCharacter.hitPoints, this.currentCharacter.hasJewel, this.currentCharacter.hasRing, true)
+    }
+
+
+     this.roomService.updateCurrentRoom(optionNumber);
+     this.currentRoom = this.roomService.returnCurrentRoom();
+
 
   }
 }

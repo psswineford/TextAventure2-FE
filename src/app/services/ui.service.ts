@@ -1,91 +1,44 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { User } from '../Data/User';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
-  private showLoginPage: boolean = true
-  private showCharacterPage: boolean = false
-  private showAddCharacterPage: boolean = false
-  private showRegisterPage: boolean = false
-  private showCurrentRoom: boolean = false
+
   public username: string = ''
   public userID: number = 0
-  constructor(private snackBar: MatSnackBar) { }
 
-  //return state info 
-  public getShowLoginStatus(): boolean {
-    return this.showLoginPage
-  }
-
-  public getShowCharacterPageStatus(): boolean {
-    return this.showCharacterPage
-  }
-
-  public getShowAddCharacterPageStatus(): boolean {
-    return this.showAddCharacterPage
-  }
-
-  public getShowRegisterPageStatus(): boolean {
-    return this.showRegisterPage
-  }
-
-  public getShowCurrentRoomStatus(): boolean {
-    return this.showCurrentRoom
-  }
-
+  constructor(private snackBar: MatSnackBar, private router: Router) { }
 
   //update state
 
   public setLoginPage(): void {
-    this.showLoginPage = true
-    this.showRegisterPage = false
-    this.showCharacterPage = false
-    this.showAddCharacterPage = false
-    this.showCurrentRoom = false
+    this.router.navigate(["/"])
   }
 
   public setRegisterPage(): void {
-    this.showLoginPage = false
-    this.showRegisterPage = true
-    this.showCharacterPage = false
-    this.showAddCharacterPage = false
-    this.showCurrentRoom = false
+    this.router.navigate(["/register"])
   }
 
   public loginSuccess(user: User): void {
-    this.showLoginPage = false
-    this.showCharacterPage = true
-    this.showRegisterPage = false
-    this.showCurrentRoom = false
+    this.router.navigate(["/character"])
     this.username = user.username
     this.userID = user.id
   }
 
   public setAddCharacterPage(): void {
-    this.showLoginPage = false
-    this.showRegisterPage = false
-    this.showCharacterPage = false
-    this.showAddCharacterPage = true
-    this.showCurrentRoom = false
+    this.router.navigate(["/add-character"])
   }
 
   public setShowCharacterPage(): void {
-    this.showLoginPage = false
-    this.showRegisterPage = false
-    this.showCharacterPage = true
-    this.showAddCharacterPage = false
-    this.showCurrentRoom = false
+    this.router.navigate(["/character"])
   }
 
   public setCurrentRoomPage(): void {
-    this.showLoginPage = false
-    this.showRegisterPage = false
-    this.showCharacterPage = false
-    this.showAddCharacterPage = false
-    this.showCurrentRoom = true
+    this.router.navigate(["/current-room"])
   }
 
 

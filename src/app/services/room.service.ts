@@ -31,8 +31,9 @@ export class RoomService {
     .subscribe({
       next: data => {
         this.currentRoom = data
-        this.returnCurrentRoom()
+        //this.returnCurrentRoom()
         this.service.setCurrentRoomPage()
+        //return this.currentRoom
       },
       error: err => {
         this.service.showError(err + 'unable to set the current room')

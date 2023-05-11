@@ -38,11 +38,13 @@ export class RoomComponent implements OnInit {
   }
 
   constructor(public uiservice: UiService, public roomService: RoomService, public characterService: CharacterService) {
+
   }
 
   ngOnInit(): void {
+    this.currentRoom = this.roomService.returnCurrentRoom()
     this.currentCharacter = this.characterService.returnSelectedCharacter()
-    this.currentRoom = this.roomService.returnCurrentRoom();
+
   }
 
 
@@ -65,11 +67,7 @@ export class RoomComponent implements OnInit {
       this.currentCharacter.hasSword = true
       this.characterService.updateCharacter(this.currentCharacter.id, this.currentCharacter.type, this.currentCharacter.name, this.currentCharacter.armorClass, this.currentCharacter.hitPoints, this.currentCharacter.hasJewel, this.currentCharacter.hasRing, true)
     }
-
-
      this.roomService.updateCurrentRoom(optionNumber);
      this.currentRoom = this.roomService.returnCurrentRoom();
-
-
   }
 }

@@ -1,7 +1,5 @@
 <h3>Here are all of your characters!</h3>
 
-<p> <button class="myButton" (click)="uiservice.setAddCharacterPage()">Create a Character</button></p>
-
 <mat-card class="character-card" *ngFor="let character of characterService.returnCharacters()">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>

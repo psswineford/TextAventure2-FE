@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Text Adventure!</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="userIsAuthenticated && !characterIsSelected">
+      <!-- <button class="myButton" (click)="uiService.setAddCharacterPage()">Create a Character</button> -->
+      <a mat-button routerLink="add-character" routerLinkActive="test">Create Character</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="test">Login</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button  routerLink="/register" routerLinkActive="test">Sign Up</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <!-- <button mat-button (click)="onLogout()">Logout</button> -->
+      <a mat-button (click)="onLogout()" routerLinkActive="test">Logout</a>
+    </li>
+  </ul>
+</mat-toolbar>
+
+

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Character } from '../Data/Character';
 import { RoomService } from './room.service';
 import { UiService } from './ui.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class CharacterService {
 
   private characters: Character[]  = []
   private selectedCharacter: Character[] = []
+  private characterSelectedListener = new Subject<boolean>();
 
   private BASEURL: string = 'https://localhost:7263/api'
   constructor(private http: HttpClient, private service: UiService, private roomService: RoomService) { }
@@ -22,6 +24,14 @@ export class CharacterService {
 
   public returnSelectedCharacter(): Character[] {
     return this.selectedCharacter
+  }
+
+  getCharacterSelectedListener() {
+    return this.characterSelectedListener.asObservable();
+  }
+
+  updateCharacterSelectedListener() {
+    this.characterSelectedListener.next(false);
   }
 
   public getCharacters(userId: number) {
@@ -44,6 +54,7 @@ export class CharacterService {
       next: data => {
         this.selectedCharacter = data
         this.returnSelectedCharacter()
+        this.characterSelectedListener.next(true)
       },
       error: err => {
         this.service.showError( err + 'Unable to retrieve characters')

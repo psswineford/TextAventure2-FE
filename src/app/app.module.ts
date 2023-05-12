@@ -12,10 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule} from '@angular/material/form-field';
-import { AddCharacterComponent } from './components/add-character/add-character.component';
+import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
+import { AddCharacterComponent } from './components/add-character/add-character.component';
+
 import { RegisterComponent } from './components/register/register.component';
 import { RoomComponent } from './components/room/room.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,8 @@ import { RoomComponent } from './components/room/room.component';
     CharacterComponent,
     AddCharacterComponent,
     RegisterComponent,
-    RoomComponent
+    RoomComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,9 @@ import { RoomComponent } from './components/room/room.component';
     MatCardModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatButtonModule
 
   ],
   providers: [],

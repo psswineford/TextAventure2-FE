@@ -17,6 +17,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button class="cardButtons" (click)="this.startTheGame(roomNumber, character.id)">Select Character</button>
+    <button class="cardButtons" (click)="this.characterService.deleteCharacter(character.id)">Delete Character</button>
 </mat-card-actions>
 </mat-card>
 

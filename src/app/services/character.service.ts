@@ -4,6 +4,7 @@ import { Character } from '../Data/Character';
 import { RoomService } from './room.service';
 import { UiService } from './ui.service';
 import { Subject } from 'rxjs/internal/Subject';
+import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +99,19 @@ export class CharacterService {
       },
       error: err => {
         this.service.showError(err + "unable to update the character")
+      }
+    })
+  }
+
+  public deleteCharacter(id: number) {
+    this.http.delete<Character[]>( this.BASEURL + `/Character/charId?id=${id}`)
+    .pipe(take(1))
+    .subscribe({
+      next: data => {
+        this.getCharacters(this.service.userID)
+      },
+      error: err => {
+        this.service.showError(err + 'unable to delete')
       }
     })
   }

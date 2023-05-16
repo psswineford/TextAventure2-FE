@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   characterIsSelected = false;
   private authListenerSubs: Subscription = new Subscription;
   private characterListenerSubs: Subscription = new Subscription;
+  
   constructor(private userService: UserService, public uiService: UiService, private characterService: CharacterService){
 
   }
